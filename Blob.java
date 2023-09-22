@@ -1,10 +1,15 @@
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Formatter;
 
 public class Blob {
-    public Blob (){
+    private String name, content, hash;
+    public Blob (String fileName) throws Exception {
+        name = fileName;
+        content = FileWriter.readFile(name);
+        hash = encryptPassword(content);
     }
 
     public static String encryptPassword(String password)
@@ -38,5 +43,13 @@ public class Blob {
         String result = formatter.toString();
         formatter.close();
         return result;
+    }
+
+    public void writeToFile() throws Exception {
+        FileWriter.writeToFile(content, "objects/" + hash);
+    }
+
+    public String getSHA(){
+        return hash;
     }
 }
