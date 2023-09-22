@@ -8,7 +8,7 @@ public class Blob {
     private String name, content, hash;
     public Blob (String fileName) throws Exception {
         name = fileName;
-        content = FileWriter.readFile(name);
+        content = Utils.readFile(name);
         hash = encryptPassword(content);
     }
 
@@ -46,7 +46,7 @@ public class Blob {
     }
 
     public void writeToFile() throws Exception {
-        FileWriter.writeToFile(content, "objects/" + hash);
+        Utils.writeToFile(content, "objects/" + hash);
     }
 
     public String getSHA(){

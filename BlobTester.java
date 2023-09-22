@@ -28,6 +28,7 @@ public class BlobTester {
          * Utils.deleteFile("index");
          * Utils.deleteDirectory("objects");
          */
+        Utils.deleteDirectory("objects");
     }
 
     @Test
@@ -37,4 +38,12 @@ public class BlobTester {
         assertEquals(testSHA, "a6f717f06c3a2d3543d2f95c1d36baa73af88ac5");
     }
 
+    @Test
+    @DisplayName("Testing file writing")
+    public void testWriteToFile() throws Exception{
+        Utils.writeToFile("djaofowudjfudisn\njfklhxoiufwjekh2", "Test File");
+        Blob blob = new Blob("Test File");
+        blob.writeToFile();
+        assertTrue(Utils.exists("objects/24db0e9e4351893d753e2e5123d1a19cfcca2b80"));
+    }
 }
