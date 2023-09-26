@@ -40,4 +40,8 @@ public class Utils {
         }
         file.delete();
     }
+
+    public static void deleteFile(String string) throws Exception{
+        Files.deleteIfExists(Paths.get(string));
+    }
 }
